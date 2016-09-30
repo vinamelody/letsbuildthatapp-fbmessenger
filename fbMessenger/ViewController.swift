@@ -16,6 +16,8 @@ class FriendsController: UICollectionViewController, UICollectionViewDelegateFlo
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        navigationItem.title = "Recent"
+        
         collectionView?.backgroundColor = UIColor.white
         collectionView?.alwaysBounceVertical = true
         collectionView?.register(FriendCell.self, forCellWithReuseIdentifier: cellId)
@@ -36,11 +38,35 @@ class FriendsController: UICollectionViewController, UICollectionViewDelegateFlo
 
 }
 
-class FriendCell: BaseCell {    
+class FriendCell: BaseCell {
+    
+    let profileImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 34
+        imageView.layer.masksToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
+    let dividerLineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
+        return view
+    }()
     
     override func setupViews() {
         
-        backgroundColor = UIColor.blue
+        addSubview(profileImageView)
+        addSubview(dividerLineView)
+        
+        profileImageView.image = UIImage(named: "zuckprofile")
+        
+        addConstraintsWithFormat(format: "H:|-12-[v0(68)]", views: profileImageView)
+        addConstraintsWithFormat(format: "V:|-12-[v0(68)]", views: profileImageView)
+        
+        addConstraintsWithFormat(format: "H:|-82-[v0]|", views: dividerLineView)
+        addConstraintsWithFormat(format: "V:[v0(1)]|", views: dividerLineView)
+        
     }
     
     
