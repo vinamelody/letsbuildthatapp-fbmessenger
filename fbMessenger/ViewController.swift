@@ -32,7 +32,7 @@ class FriendsController: UICollectionViewController, UICollectionViewDelegateFlo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 100)
+        return CGSize(width: view.frame.width, height: 200)
     }
 
 
@@ -62,7 +62,10 @@ class FriendCell: BaseCell {
         profileImageView.image = UIImage(named: "zuckprofile")
         
         addConstraintsWithFormat(format: "H:|-12-[v0(68)]", views: profileImageView)
-        addConstraintsWithFormat(format: "V:|-12-[v0(68)]", views: profileImageView)
+        addConstraintsWithFormat(format: "V:[v0(68)]", views: profileImageView)
+        
+        // this is how you center the profileImageView vertically, but remember to remove the pipe from constraint format
+        addConstraint(NSLayoutConstraint(item: profileImageView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
         
         addConstraintsWithFormat(format: "H:|-82-[v0]|", views: dividerLineView)
         addConstraintsWithFormat(format: "V:[v0(1)]|", views: dividerLineView)
