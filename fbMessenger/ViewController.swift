@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FriendsController: UICollectionViewController {
+class FriendsController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     private let cellId = "cellId"
 
@@ -17,6 +17,7 @@ class FriendsController: UICollectionViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         collectionView?.backgroundColor = UIColor.white
+        collectionView?.alwaysBounceVertical = true
         collectionView?.register(FriendCell.self, forCellWithReuseIdentifier: cellId)
     }
     
@@ -26,6 +27,10 @@ class FriendsController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 100)
     }
 
 
