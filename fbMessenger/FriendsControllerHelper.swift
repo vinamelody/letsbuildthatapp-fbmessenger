@@ -28,27 +28,31 @@ extension FriendsController {
     
     func setupData() {
         
+        let delegate = UIApplication.shared.delegate as? AppDelegate
         
+        if let context = delegate?.persistentContainer.viewContext {
+            
+            let mark = NSEntityDescription.insertNewObject(forEntityName: "Friend", into: context) as! Friend
+            mark.name = "Mark Zuckerberg"
+            mark.profileImageName = "zuckprofile"
+            
+            let message = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
+            message.friend = mark
+            message.text = "Hello, my name is Mark. Nice to meet you ..."
+            message.date = Date() as NSDate?
+            
+            let steve = NSEntityDescription.insertNewObject(forEntityName: "Friend", into: context) as! Friend
+            steve.name = "Steve Jobs"
+            steve.profileImageName = "steve_profile"
+            
+            let messageSteve = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
+            messageSteve.friend = steve
+            messageSteve.text = "Apple creates the greates iOS devices for the world ..."
+            messageSteve.date = Date() as NSDate?
+            
+            messages = [message, messageSteve]
+        }
         
-        let mark = Friend()
-        mark.name = "Mark Zuckerberg"
-        mark.profileImageName = "zuckprofile"
-        
-        let message = Message()
-        message.friend = mark
-        message.text = "Hello, my name is Mark. Nice to meet you ..."
-        message.date = Date() as NSDate?
-        
-        let steve = Friend()
-        steve.name = "Steve Jobs"
-        steve.profileImageName = "steve_profile"
-        
-        let messageSteve = Message()
-        messageSteve.friend = steve
-        messageSteve.text = "Apple creates the greates iOS devices for the world ..."
-        messageSteve.date = Date() as NSDate?
-        
-        messages = [message, messageSteve]
     }
     
 }
