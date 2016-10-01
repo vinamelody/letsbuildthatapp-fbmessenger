@@ -7,25 +7,28 @@
 //
 
 import UIKit
+import CoreData
 
-class Friend: NSObject {
-    
-    var name: String?
-    var profileImageName: String?
-    
-}
-
-class Message: NSObject {
-    
-    var text: String?
-    var date: Date?
-    
-    var friend: Friend?
-}
+//class Friend: NSObject {
+//    
+//    var name: String?
+//    var profileImageName: String?
+//    
+//}
+//
+//class Message: NSObject {
+//    
+//    var text: String?
+//    var date: Date?
+//    
+//    var friend: Friend?
+//}
 
 extension FriendsController {
     
     func setupData() {
+        
+        
         
         let mark = Friend()
         mark.name = "Mark Zuckerberg"
@@ -34,7 +37,7 @@ extension FriendsController {
         let message = Message()
         message.friend = mark
         message.text = "Hello, my name is Mark. Nice to meet you ..."
-        message.date = Date()
+        message.date = Date() as NSDate?
         
         let steve = Friend()
         steve.name = "Steve Jobs"
@@ -43,7 +46,7 @@ extension FriendsController {
         let messageSteve = Message()
         messageSteve.friend = steve
         messageSteve.text = "Apple creates the greates iOS devices for the world ..."
-        messageSteve.date = Date()
+        messageSteve.date = Date() as NSDate?
         
         messages = [message, messageSteve]
     }

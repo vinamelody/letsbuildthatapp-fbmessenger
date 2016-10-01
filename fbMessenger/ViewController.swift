@@ -69,7 +69,7 @@ class MessageCell: BaseCell {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "h:mm a"
                 
-                timeLabel.text = dateFormatter.string(from: date)
+                timeLabel.text = dateFormatter.string(from: date as Date)
             }
         }
     }
