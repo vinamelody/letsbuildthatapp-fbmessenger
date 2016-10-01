@@ -26,7 +26,38 @@ import CoreData
 
 extension FriendsController {
     
+    func clearData() {
+        
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        
+        if let context = delegate?.persistentContainer.viewContext {
+            
+            do {
+                
+                let entityNames = ["Friend", "Message"]
+                
+                for entity in entityNames {
+                    let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entity)
+                    //let fetchRequest = NSFetchRequest(entityName: entity)
+                    
+                    let objects = try(context.fetch(fetchRequest)) as? [NSManagedObject]
+                    
+                    for object in objects! {
+                        context.delete(object)
+                    }
+                }
+                
+                try(context.save())
+               
+            } catch let err {
+                print(err)
+            }
+        }
+    }
+    
     func setupData() {
+        
+        clearData()
         
         let delegate = UIApplication.shared.delegate as? AppDelegate
         

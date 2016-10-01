@@ -60,6 +60,8 @@ class MessageCell: BaseCell {
             
             if let profileImageName = message?.friend?.profileImageName {
                 profileImageView.image = UIImage(named: profileImageName)
+                hasReadImageView.image = UIImage(named: profileImageName)
+                print("got profile image here" + profileImageName)
             }
             
             messageLabel.text = message?.text
@@ -154,7 +156,7 @@ class MessageCell: BaseCell {
         containerView.addSubview(timeLabel)
         containerView.addSubview(hasReadImageView)
         
-        containerView.addConstraintsWithFormat(format: "H:|[v0][v1(120)]-12-|", views: nameLabel, timeLabel)
+        containerView.addConstraintsWithFormat(format: "H:|[v0][v1(80)]-12-|", views: nameLabel, timeLabel)
         containerView.addConstraintsWithFormat(format: "H:|[v0]-8-[v1(20)]-12-|", views: messageLabel, hasReadImageView)
         
         containerView.addConstraintsWithFormat(format: "V:|[v0][v1(24)]|", views: nameLabel, messageLabel)
