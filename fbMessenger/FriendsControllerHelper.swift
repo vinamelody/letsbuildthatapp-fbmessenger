@@ -56,9 +56,28 @@ extension FriendsController {
                 print(err)
             }
             
-            messages = [message, messageSteve]
+            //messages = [message, messageSteve]
         }
         
+        loadData()
+        
     }
+    
+    func loadData() {
+        
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        
+        if let context = delegate?.persistentContainer.viewContext {
+            
+            let fetchRequest: NSFetchRequest<Message> = Message.fetchRequest()
+            
+            do {
+                messages = try(context.fetch(fetchRequest)) as [Message]
+            } catch let err {
+                print(err)
+            }
+        }
+    }
+    
     
 }
