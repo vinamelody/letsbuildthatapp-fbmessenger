@@ -50,6 +50,12 @@ extension FriendsController {
             messageSteve.text = "Apple creates the greates iOS devices for the world ..."
             messageSteve.date = Date() as NSDate?
             
+            do {
+                try(context.save())
+            } catch let err {
+                print(err)
+            }
+            
             messages = [message, messageSteve]
         }
         
