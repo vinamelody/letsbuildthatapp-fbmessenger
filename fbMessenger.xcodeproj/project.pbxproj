@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A3ECECE1D9F630900FA2842 /* FriendsControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3ECECD1D9F630900FA2842 /* FriendsControllerHelper.swift */; };
 		5A5D09A01D9E5E0B0076AB29 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5D099F1D9E5E0B0076AB29 /* Extensions.swift */; };
 		5AD82E7B1D9E4155009D12EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD82E7A1D9E4155009D12EE /* AppDelegate.swift */; };
 		5AD82E7D1D9E4155009D12EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD82E7C1D9E4155009D12EE /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5A3ECECD1D9F630900FA2842 /* FriendsControllerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsControllerHelper.swift; sourceTree = "<group>"; };
 		5A5D099F1D9E5E0B0076AB29 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5AD82E771D9E4155009D12EE /* fbMessenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fbMessenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AD82E7A1D9E4155009D12EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				5AD82E891D9E4155009D12EE /* Info.plist */,
 				5AD82E811D9E4155009D12EE /* fbMessenger.xcdatamodeld */,
 				5A5D099F1D9E5E0B0076AB29 /* Extensions.swift */,
+				5A3ECECD1D9F630900FA2842 /* FriendsControllerHelper.swift */,
 			);
 			path = fbMessenger;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 				5AD82E831D9E4155009D12EE /* fbMessenger.xcdatamodeld in Sources */,
 				5AD82E7B1D9E4155009D12EE /* AppDelegate.swift in Sources */,
 				5A5D09A01D9E5E0B0076AB29 /* Extensions.swift in Sources */,
+				5A3ECECE1D9F630900FA2842 /* FriendsControllerHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
