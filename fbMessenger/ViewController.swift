@@ -115,7 +115,7 @@ class MessageCell: BaseCell {
     
     let hasReadImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.cornerRadius = 34
+        imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView
