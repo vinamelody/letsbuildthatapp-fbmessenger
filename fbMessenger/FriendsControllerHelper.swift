@@ -63,6 +63,8 @@ extension FriendsController {
         
         if let context = delegate?.persistentContainer.viewContext {
             
+            
+            
             let mark = NSEntityDescription.insertNewObject(forEntityName: "Friend", into: context) as! Friend
             mark.name = "Mark Zuckerberg"
             mark.profileImageName = "zuckprofile"
@@ -76,11 +78,10 @@ extension FriendsController {
             steve.name = "Steve Jobs"
             steve.profileImageName = "steve_profile"
             
-            let messageSteve = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
-            messageSteve.friend = steve
-            messageSteve.text = "Apple creates the greates iOS devices for the world ..."
-            messageSteve.date = Date() as NSDate?
-            
+            createMessageWithText(text: "Good morning...", friend: steve, minutesAgo: 2, context: context)
+            createMessageWithText(text: "Hello, how are you?", friend: steve, minutesAgo: 1, context: context)
+            createMessageWithText(text: "Are you interested in buying an Apple device?", friend: steve, minutesAgo: 0, context: context)
+
             do {
                 try(context.save())
             } catch let err {
@@ -91,6 +92,15 @@ extension FriendsController {
         }
         
         loadData()
+        
+    }
+    
+    func createMessageWithText(text: String, friend: Friend, minutesAgo: Double, context: NSManagedObjectContext) {
+        
+        let message = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
+        message.friend = friend
+        message.text = text
+        message.date = Date().addingTimeInterval(-minutesAgo * 60) as NSDate?
         
     }
     
