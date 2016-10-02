@@ -78,13 +78,13 @@ extension FriendsController {
             steve.name = "Steve Jobs"
             steve.profileImageName = "steve_profile"
             
-            createMessageWithText(text: "Good morning...", friend: steve, minutesAgo: 2, context: context)
-            createMessageWithText(text: "Hello, how are you?", friend: steve, minutesAgo: 1, context: context)
-            createMessageWithText(text: "Are you interested in buying an Apple device?", friend: steve, minutesAgo: 0, context: context)
+            createMessageWithText(text: "Good morning...", friend: steve, minutesAgo: 3, context: context)
+            createMessageWithText(text: "Hello, how are you?", friend: steve, minutesAgo: 2, context: context)
+            createMessageWithText(text: "Are you interested in buying an Apple device?", friend: steve, minutesAgo: 1, context: context)
             
             let donald = NSEntityDescription.insertNewObject(forEntityName: "Friend", into: context) as! Friend
             donald.name = "Donald Trump"
-            donald.profileImageName = "donald_profile"
+            donald.profileImageName = "donald_trump_profile"
             
             createMessageWithText(text: "You're fired!", friend: donald, minutesAgo: 5, context: context)
             
@@ -139,6 +139,8 @@ extension FriendsController {
                     
                 }
                 
+                messages = messages?.sorted(by: {$0.date!.compare($1.date! as Date) == .orderedDescending})
+                //messages = messages?.sorted(by: areInIncreasingOrder($0.date!, $1.date!) -> false)
             }
             
             
