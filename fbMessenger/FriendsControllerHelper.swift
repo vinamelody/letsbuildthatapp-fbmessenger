@@ -113,6 +113,7 @@ extension FriendsController {
             let fetchRequest: NSFetchRequest<Message> = Message.fetchRequest()
             fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
             fetchRequest.predicate = NSPredicate(format: "friend.name = %@", "Steve Jobs")
+            fetchRequest.fetchLimit = 1
             
             do {
                 messages = try(context.fetch(fetchRequest)) as [Message]
