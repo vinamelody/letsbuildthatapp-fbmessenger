@@ -48,6 +48,15 @@ class FriendsController: UICollectionViewController, UICollectionViewDelegateFlo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 100)
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // i usually make mistake causing next view to be blank by having
+        // let layout = UICollectionViewLayout() --> forgot the FLOW !!
+        let layout = UICollectionViewFlowLayout()
+        let controller = ChatLogController(collectionViewLayout: layout)
+        controller.friend = messages?[indexPath.item].friend
+        navigationController?.pushViewController(controller, animated: true)
+    }
 
 
 }
@@ -61,7 +70,6 @@ class MessageCell: BaseCell {
             if let profileImageName = message?.friend?.profileImageName {
                 profileImageView.image = UIImage(named: profileImageName)
                 hasReadImageView.image = UIImage(named: profileImageName)
-                print("got profile image here" + profileImageName)
             }
             
             messageLabel.text = message?.text

@@ -12,6 +12,7 @@
 		5A3ECED51D9F67A700FA2842 /* Friend+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3ECED11D9F67A700FA2842 /* Friend+CoreDataClass.swift */; };
 		5A3ECEE01D9F69A700FA2842 /* Message+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3ECEDC1D9F69A700FA2842 /* Message+CoreDataProperties.swift */; };
 		5A3ECEE21D9F69A700FA2842 /* Friend+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3ECEDE1D9F69A700FA2842 /* Friend+CoreDataProperties.swift */; };
+		5A3ECEE41DA146E400FA2842 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3ECEE31DA146E400FA2842 /* ChatLogController.swift */; };
 		5A5D09A01D9E5E0B0076AB29 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5D099F1D9E5E0B0076AB29 /* Extensions.swift */; };
 		5AD82E7B1D9E4155009D12EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD82E7A1D9E4155009D12EE /* AppDelegate.swift */; };
 		5AD82E7D1D9E4155009D12EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD82E7C1D9E4155009D12EE /* ViewController.swift */; };
@@ -26,6 +27,7 @@
 		5A3ECED11D9F67A700FA2842 /* Friend+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Friend+CoreDataClass.swift"; path = "../Friend+CoreDataClass.swift"; sourceTree = "<group>"; };
 		5A3ECEDC1D9F69A700FA2842 /* Message+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Message+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5A3ECEDE1D9F69A700FA2842 /* Friend+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Friend+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5A3ECEE31DA146E400FA2842 /* ChatLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		5A5D099F1D9E5E0B0076AB29 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5AD82E771D9E4155009D12EE /* fbMessenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = fbMessenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AD82E7A1D9E4155009D12EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				5A3ECECD1D9F630900FA2842 /* FriendsControllerHelper.swift */,
 				5A3ECECF1D9F67A700FA2842 /* Message+CoreDataClass.swift */,
 				5A3ECED11D9F67A700FA2842 /* Friend+CoreDataClass.swift */,
+				5A3ECEE31DA146E400FA2842 /* ChatLogController.swift */,
 			);
 			path = fbMessenger;
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A3ECEE41DA146E400FA2842 /* ChatLogController.swift in Sources */,
 				5AD82E7D1D9E4155009D12EE /* ViewController.swift in Sources */,
 				5A3ECEE21D9F69A700FA2842 /* Friend+CoreDataProperties.swift in Sources */,
 				5A3ECED51D9F67A700FA2842 /* Friend+CoreDataClass.swift in Sources */,
