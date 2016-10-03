@@ -90,6 +90,15 @@ class MessageCell: BaseCell {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "h:mm a"
                 
+                let elapsedTimeInSeconds = Date().timeIntervalSince(date as Date)
+                let secondInDays: TimeInterval = 60 * 60 * 24
+                
+                if elapsedTimeInSeconds > 7 * secondInDays {
+                    dateFormatter.dateFormat = "MM/dd/yy"
+                } else if elapsedTimeInSeconds > secondInDays {
+                    dateFormatter.dateFormat = "EEE"
+                }
+                
                 timeLabel.text = dateFormatter.string(from: date as Date)
             }
         }
