@@ -56,15 +56,16 @@ class ChatLogMessageCell: BaseCell {
     
     let messageTextView: UITextView = {
         let tv = UITextView()
-        tv.font = UIFont.systemFont(ofSize: 16)
+        tv.font = UIFont.systemFont(ofSize: 18)
         tv.text = "Some message"
+        tv.backgroundColor = UIColor.clear
         return tv
     }()
     
     override func setupViews() {
         super.setupViews()
         
-        backgroundColor = UIColor.blue
+        backgroundColor = UIColor.lightGray
         
         addSubview(messageTextView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: messageTextView)
