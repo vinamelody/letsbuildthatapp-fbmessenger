@@ -44,7 +44,7 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
         
         cell.messageTextView.text = messages?[indexPath.item].text
         
-        if let messageText = messages?[indexPath.item].text, let profileImageName = messages?[indexPath.item].friend?.profileImageName {
+        if let message = messages?[indexPath.item], let messageText = message.text, let profileImageName = message.friend?.profileImageName {
             
             cell.profileImageView.image = UIImage(named: profileImageName)
             
@@ -53,8 +53,29 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
             let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
             let estimatedFrame = NSString(string: messageText).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 18)], context: nil)
             
-            cell.messageTextView.frame = CGRect(48 + 8, 0, estimatedFrame.width + 16, estimatedFrame.height + 20)
-            cell.textBubbleView.frame = CGRect(48, 0, estimatedFrame.width + 16 + 8, estimatedFrame.height + 20)
+            if !message.isSender {
+                
+                cell.messageTextView.frame = CGRect(48 + 8, 0, estimatedFrame.width + 16, estimatedFrame.height + 20)
+                cell.textBubbleView.frame = CGRect(48, 0, estimatedFrame.width + 16 + 8, estimatedFrame.height + 20)
+                
+                cell.profileImageView.isHidden = false
+                cell.textBubbleView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+                cell.messageTextView.textColor = UIColor.black
+                
+            } else {
+                
+                // outgoing sender message
+                
+                cell.messageTextView.frame = CGRect(view.frame.width - estimatedFrame.width - 16 - 16, 0, estimatedFrame.width + 16, estimatedFrame.height + 20)
+                cell.textBubbleView.frame = CGRect(view.frame.width - estimatedFrame.width - 16 - 8 - 16, 0, estimatedFrame.width + 16 + 8, estimatedFrame.height + 20)
+                
+                cell.profileImageView.isHidden = true
+                
+                cell.textBubbleView.backgroundColor = UIColor.rgb(red: 0, green: 137, blue: 249)
+                cell.messageTextView.textColor = UIColor.white
+            }
+            
+            
         }
         
         return cell

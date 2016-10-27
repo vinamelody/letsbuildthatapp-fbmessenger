@@ -2,12 +2,13 @@
 //  Message+CoreDataProperties.swift
 //  fbMessenger
 //
-//  Created by Vina Melody on 1/10/16.
+//  Created by Vina Melody on 27/10/16.
 //  Copyright © 2016 Vina Rianti. All rights reserved.
 //
 
 import Foundation
 import CoreData
+
 
 extension Message {
 
@@ -16,6 +17,7 @@ extension Message {
     }
 
     @NSManaged public var date: NSDate?
+    @NSManaged public var isSender: Bool
     @NSManaged public var text: String?
     @NSManaged public var friend: Friend?
 
