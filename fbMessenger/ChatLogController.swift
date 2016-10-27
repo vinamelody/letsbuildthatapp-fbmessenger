@@ -27,6 +27,9 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // hide the bottom tabbar
+        tabBarController?.tabBar.isHidden = true
+        
         collectionView?.backgroundColor = UIColor.white
         
         collectionView?.register(ChatLogMessageCell.self, forCellWithReuseIdentifier: cellId)
