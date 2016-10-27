@@ -69,12 +69,15 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillShow , object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillHide , object: nil)
+        
     }
     
     func handleKeyboardNotification(notification: NSNotification) {
+        
         if let userInfo = notification.userInfo {
+            
             let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-            print(keyboardFrame)
             
             let isKeyboardShowing = notification.name == NSNotification.Name.UIKeyboardWillShow
             
@@ -196,6 +199,7 @@ class ChatLogMessageCell: BaseCell {
         tv.font = UIFont.systemFont(ofSize: 18)
         tv.text = "Some message"
         tv.backgroundColor = UIColor.clear
+        tv.isEditable = false
         return tv
     }()
     
