@@ -56,22 +56,24 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
             if !message.isSender {
                 
                 cell.messageTextView.frame = CGRect(48 + 8, 0, estimatedFrame.width + 16, estimatedFrame.height + 20)
-                cell.textBubbleView.frame = CGRect(48, 0, estimatedFrame.width + 16 + 8, estimatedFrame.height + 20)
+                cell.textBubbleView.frame = CGRect(48 - 10, -4, estimatedFrame.width + 16 + 8 + 16, estimatedFrame.height + 20 + 6)
                 
                 cell.profileImageView.isHidden = false
-                cell.textBubbleView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+                cell.bubbleImageView.image = ChatLogMessageCell.grayBubbleImage
+                cell.bubbleImageView.tintColor = UIColor(white: 0.95, alpha: 1)
                 cell.messageTextView.textColor = UIColor.black
                 
             } else {
                 
                 // outgoing sender message
                 
-                cell.messageTextView.frame = CGRect(view.frame.width - estimatedFrame.width - 16 - 16, 0, estimatedFrame.width + 16, estimatedFrame.height + 20)
-                cell.textBubbleView.frame = CGRect(view.frame.width - estimatedFrame.width - 16 - 8 - 16, 0, estimatedFrame.width + 16 + 8, estimatedFrame.height + 20)
+                cell.messageTextView.frame = CGRect(view.frame.width - estimatedFrame.width - 16 - 16 - 8, 0, estimatedFrame.width + 16, estimatedFrame.height + 20)
+                cell.textBubbleView.frame = CGRect(view.frame.width - estimatedFrame.width - 16 - 8 - 16 - 10, -4, estimatedFrame.width + 16 + 8 + 10, estimatedFrame.height + 20 + 6)
                 
                 cell.profileImageView.isHidden = true
                 
-                cell.textBubbleView.backgroundColor = UIColor.rgb(red: 0, green: 137, blue: 249)
+                cell.bubbleImageView.image = ChatLogMessageCell.blueBubbleImage
+                cell.bubbleImageView.tintColor = UIColor.rgb(red: 0, green: 137, blue: 249)
                 cell.messageTextView.textColor = UIColor.white
             }
             
@@ -113,7 +115,7 @@ class ChatLogMessageCell: BaseCell {
     // this is for the background
     let textBubbleView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(white: 0.90, alpha: 1)
+//        view.backgroundColor = UIColor(white: 0.90, alpha: 1)
         view.layer.cornerRadius = 15
         view.layer.masksToBounds = true
         return view
@@ -125,6 +127,18 @@ class ChatLogMessageCell: BaseCell {
         imageView.layer.cornerRadius = 15
         imageView.layer.masksToBounds = true
         return imageView
+    }()
+    
+    static let grayBubbleImage = UIImage(named: "bubble_gray")!.resizableImage(withCapInsets: UIEdgeInsetsMake(22, 26, 22, 26)).withRenderingMode(.alwaysTemplate)
+    static let blueBubbleImage = UIImage(named: "bubble_blue")!.resizableImage(withCapInsets: UIEdgeInsetsMake(22, 26, 22, 26)).withRenderingMode(.alwaysTemplate)
+    
+    let bubbleImageView: UIImageView = {
+        let iv = UIImageView()
+        // where does this 22 & 26 come from? check the photoshop, episode 6 around minute 21
+        iv.image = ChatLogMessageCell.grayBubbleImage
+        iv.tintColor = UIColor(white: 0.90, alpha: 1)
+        return iv
+        
     }()
     
     override func setupViews() {
@@ -139,6 +153,10 @@ class ChatLogMessageCell: BaseCell {
         
         addConstraintsWithFormat(format: "H:|-8-[v0(30)]", views: profileImageView)
         addConstraintsWithFormat(format: "V:[v0(30)]|", views: profileImageView)
+        
+        textBubbleView.addSubview(bubbleImageView)
+        textBubbleView.addConstraintsWithFormat(format: "H:|[v0]|", views: bubbleImageView)
+        textBubbleView.addConstraintsWithFormat(format: "V:|[v0]|", views: bubbleImageView)
         
     }
 }
