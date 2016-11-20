@@ -36,19 +36,75 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
         return tf
     }()
     
-    let sendButton: UIButton = {
+    lazy var sendButton: UIButton = {
         let btn = UIButton()
         btn.setTitle("Send", for: .normal)
         let titleColor = UIColor.rgb(red: 0, green: 137, blue: 249)
         btn.setTitleColor(titleColor, for: .normal)
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        btn.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         return btn
     }()
     
+    func handleSend() {
+        
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let context = delegate.persistentContainer.viewContext
+        
+        let message = FriendsController.createMessageWithText(text: inputTextField.text!, friend: friend!, minutesAgo: 0, context: context, isSender: true)
+        
+        do {
+            try context.save()
+            
+            messages?.append(message)
+            
+            let item = messages!.count - 1
+            let insertionIndexPath = IndexPath(item: item, section: 0)
+            
+            collectionView?.insertItems(at: [insertionIndexPath])
+            collectionView?.scrollToItem(at: insertionIndexPath, at: .bottom, animated: true)
+            inputTextField.text = nil
+            
+        } catch let err {
+            print(err)
+        }
+    }
+    
     var bottomConstraint: NSLayoutConstraint?
+    
+    
+    // This is to simulate message that's inserted before now. We try to insert it into messages array, re-sort it, find the new indexPath for that item and insert it to collectionView
+    func simulate() {
+        
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let context = delegate.persistentContainer.viewContext
+        
+        let message = FriendsController.createMessageWithText(text: "Here's a message that's just sent few mins ago", friend: friend!, minutesAgo: 2, context: context)
+        
+        do {
+            try context.save()
+            
+            messages?.append(message)
+            
+            messages = messages?.sorted(by: {$0.date!.compare($1.date! as Date) == .orderedAscending})
+            
+            if let item = messages?.index(of: message) {
+                
+                let receivingIndexPath = IndexPath(item: item, section: 0)
+                collectionView?.insertItems(at: [receivingIndexPath])
+            }
+            
+        } catch let err {
+            print(err)
+        }
+
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Simulate", style: .plain, target: self, action: #selector(simulate))
         
         // hide the bottom tabbar
         tabBarController?.tabBar.isHidden = true

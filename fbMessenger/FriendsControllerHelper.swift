@@ -1,4 +1,4 @@
-//
+ //
 //  FriendsControllerHelper.swift
 //  fbMessenger
 //
@@ -80,19 +80,19 @@ extension FriendsController {
             donald.name = "Donald Trump"
             donald.profileImageName = "donald_trump_profile"
             
-            createMessageWithText(text: "You're fired!", friend: donald, minutesAgo: 5, context: context)
+            FriendsController.createMessageWithText(text: "You're fired!", friend: donald, minutesAgo: 5, context: context)
             
             let gandhi = NSEntityDescription.insertNewObject(forEntityName: "Friend", into: context) as! Friend
             gandhi.name = "Mahatma Gandhi"
             gandhi.profileImageName = "gandhi"
             
-            createMessageWithText(text: "Love, peace and joy.....", friend: gandhi, minutesAgo: 60 * 24, context: context)
+            FriendsController.createMessageWithText(text: "Love, peace and joy.....", friend: gandhi, minutesAgo: 60 * 24, context: context)
             
             let hillary = NSEntityDescription.insertNewObject(forEntityName: "Friend", into: context) as! Friend
             hillary.name = "Hillary Clinton"
             hillary.profileImageName = "hillary_profile"
             
-            createMessageWithText(text: "Please do not vote fore me, you did for Billy!", friend: hillary, minutesAgo: 8 * 60 * 24, context: context)
+            FriendsController.createMessageWithText(text: "Please do not vote fore me, you did for Billy!", friend: hillary, minutesAgo: 8 * 60 * 24, context: context)
 
             do {
                 try(context.save())
@@ -113,27 +113,31 @@ extension FriendsController {
         steve.name = "Steve Jobs"
         steve.profileImageName = "steve_profile"
         
-        createMessageWithText(text: "Good morning...", friend: steve, minutesAgo: 3, context: context)
-        createMessageWithText(text: "Hello, how are you? Hope you are having a good breakfast.", friend: steve, minutesAgo: 2, context: context)
-        createMessageWithText(text: "Are you interested in buying an Apple device? We just launched new iPhone 7 that has three different capacity options which are 64GB, 128GB and 256GB. ", friend: steve, minutesAgo: 1, context: context)
+        FriendsController.createMessageWithText(text: "Good morning...", friend: steve, minutesAgo: 3, context: context)
+        FriendsController.createMessageWithText(text: "Hello, how are you? Hope you are having a good breakfast.", friend: steve, minutesAgo: 2, context: context)
+        FriendsController.createMessageWithText(text: "Are you interested in buying an Apple device? We just launched new iPhone 7 that has three different capacity options which are 64GB, 128GB and 256GB. ", friend: steve, minutesAgo: 1, context: context)
         
         // response message
         
-        createMessageWithText(text: "Yes i want to buy iPhone 7, what's the price?", friend: steve, minutesAgo: 1, context: context, isSender: true)
+        FriendsController.createMessageWithText(text: "Yes i want to buy iPhone 7, what's the price?", friend: steve, minutesAgo: 1, context: context, isSender: true)
         
-        createMessageWithText(text: "Totally understand that you want the new iphone 7 but you will have to wait until Setpmber ", friend: steve, minutesAgo: 1, context: context)
+        FriendsController.createMessageWithText(text: "Totally understand that you want the new iphone 7 but you will have to wait until Setpmber ", friend: steve, minutesAgo: 1, context: context)
         
-        createMessageWithText(text: "Absolutely i just bear with my current second hand iphone", friend: steve, minutesAgo: 1, context: context, isSender: true)
+        FriendsController.createMessageWithText(text: "Absolutely i just bear with my current second hand iphone", friend: steve, minutesAgo: 1, context: context, isSender: true)
         
     }
     
-    func createMessageWithText(text: String, friend: Friend, minutesAgo: Double, context: NSManagedObjectContext, isSender: Bool = false) {
+    // this @discardableResult is to silent the complaints
+    // see http://stackoverflow.com/questions/38192751/swift-3-0-result-of-call-is-unused
+    @discardableResult
+    static func createMessageWithText(text: String, friend: Friend, minutesAgo: Double, context: NSManagedObjectContext, isSender: Bool = false) -> Message {
         
         let message = NSEntityDescription.insertNewObject(forEntityName: "Message", into: context) as! Message
         message.friend = friend
         message.text = text
         message.date = Date().addingTimeInterval(-minutesAgo * 60) as NSDate?
         message.isSender = NSNumber(booleanLiteral: isSender) as Bool
+        return message
     }
     
     func loadData() {
